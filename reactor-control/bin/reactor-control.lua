@@ -9,7 +9,7 @@ local MAX_ENERGY = 10000000 -- maximum energy that the reactor can hold
 local TARGET_ENERGY = MAX_ENERGY * 0.50
 local SAMPLE_TIME = 0.25 -- PID sample time
 
-local reactor = component.br_reactor
+local reactor
 -- 1500 / TARGET_ENERGY, 5 / TARGET_ENERGY, 0
 local reactorPID = pid.new(TARGET_ENERGY, 1500 / TARGET_ENERGY, 5 / TARGET_ENERGY, 20000 / TARGET_ENERGY, "reverse")
 reactorPID:setSampleTime(SAMPLE_TIME)
@@ -80,6 +80,9 @@ local function doSample() -- reactor management timer
 end
 
 do
+	if component.isAvailable("br_reactor") then
+		reactor = component.br_reactor
+	end
 	-- initialize the PID if the reactor is connected
 	if reactor then
 		reactorPID:setAutomatic(getEnergyAmount(), getControlRodPercent())
