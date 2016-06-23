@@ -79,9 +79,9 @@ function PID:setTuningParameters(kp, ki, kd)
 	self._kd = kd * sampleTimeSec
 
 	if self.inReverse then
-		self._kp = (0 - self._kp)
-		self._ki = (0 - self._ki)
-		self._kd = (0 - self._kd)
+		self._kp = -self._kp
+		self._ki = -self._ki
+		self._kd = -self._kd
 	end
 end
 
@@ -177,9 +177,9 @@ function PID:setDirection(direction)
 
 	local inReverse = (direction == "reverse")
 	if self.inReverse ~= inReverse then
-		self._kp = (0 - self._kp)
-		self._ki = (0 - self._ki)
-		self._kd = (0 - self._kd)
+		self._kp = -self._kp
+		self._ki = -self._ki
+		self._kd = -self._kd
 
 		self.inReverse = inReverse
 	end
@@ -206,9 +206,8 @@ function PID:setSampleTime(t)
 	self._kd = self.kd * timeInSec
 
 	if self.inReverse then
-		self._kp = (0 - self._kp)
-		self._ki = (0 - self._ki)
-		self._kd = (0 - self._kd)
+		self._ki = -self._ki
+		self._kd = -self._kd
 	end
 end
 
