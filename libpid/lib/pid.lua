@@ -127,11 +127,6 @@ end
 
 -- sets the PID to manual mode
 function PID:setManual()
-	--[[if active ~= self.active then
-		self.active = active
-		self:initialize()
-	end]]
-
 	self.active = false
 end
 
@@ -181,7 +176,7 @@ function PID:setDirection(direction)
 	end
 
 	local inReverse = (direction == "reverse")
-	if self.active and self.inReverse ~= inReverse then
+	if self.inReverse ~= inReverse then
 		self._kp = (0 - self._kp)
 		self._ki = (0 - self._ki)
 		self._kd = (0 - self._kd)
