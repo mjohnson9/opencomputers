@@ -146,14 +146,14 @@ function PID:setAutomatic(input, output)
 	self.output = output
 	if self.output > self.outMax then
 		self.output = self.outMax
-	else if self.output < self.outMin then
+	elseif self.output < self.outMin then
 		self.output = self.outMin
 	end
 
 	self.iTerm = output
 	if self.iTerm > self.outMax then
 		self.iTerm = self.outMax
-	else if self.iTerm < self.outMin then
+	elseif self.iTerm < self.outMin then
 		self.iTerm = self.outMin
 	end
 
