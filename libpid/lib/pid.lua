@@ -21,6 +21,8 @@ function PID:__init()
 	self.output = 0
 	self.lastInput = 0
 	self.iTerm = 0
+	self.inReverse = false
+	self:setManual()
 end
 
 -- where the magic happens
@@ -238,13 +240,10 @@ local function newPID(target, kp, ki, kd, direction)
 
 	pid:__init()
 
-	pid:setMode("manual")
 	pid:setTarget(target)
 	pid:setTuningParameters(kp, ki, kd)
 	if direction ~= nil then
 		pid:setDirection(direction)
-	else
-		pid:setDirection("direct")
 	end
 	pid:setOutputLimits(0, 15)
 
